@@ -14,6 +14,7 @@ const Header = () => {
   return (
     <div className={baseCls}>
       <Link to="/">MyTodos</Link>
+      <h1>test</h1>
     </div>
   )
 };
