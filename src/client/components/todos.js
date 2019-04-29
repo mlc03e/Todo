@@ -102,7 +102,7 @@ const Todos = ({ filterBy, todos, updateTodos }) =>  {
    *
    * @returns {Array} - Returns an array of Todo React Elements
    */
-   console.log(todos);
+   // console.log(todos);
   const renderTodos = () => {
     if (!Array.isArray(todos)) {
       return null;

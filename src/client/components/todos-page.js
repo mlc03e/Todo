@@ -7,7 +7,7 @@ import Button from './button';
 import Navbar from './navbar';
 import TodoForm from './todo-form';
 import TodoLink from './todo-link';
-import Todos from './todos';
+
 import SummaryBar from './summary-bar';
 
 /**
@@ -110,14 +110,13 @@ class TodosPage extends React.Component {
     return (
       <div className={this.baseCls}>
         <Navbar filterBy={this.state.filterBy} onClickFilter={this.setFilterBy} />
-        <SummaryBar todos={this.state.todos}/>
-        <TodoForm onSubmit={this.addTodo} />
-
-        <Todos
+        <SummaryBar 
           filterBy={this.state.filterBy}
           todos={this.state.todos}
-          updateTodos={this.updateTodos}
-        />
+          updateTodos={this.updateTodos}/>
+        <TodoForm onSubmit={this.addTodo} />
+
+
       </div>
     );
   }
