@@ -30,7 +30,7 @@ const defaultProps = {
  * Todos component
  * @returns {ReactElement}
  */
-const Todos = ({ filterBy, todos, updateTodos }) => {
+const Todos = ({ filterBy, todos, updateTodos }) =>  {
   /**
    * Base CSS class
    */
@@ -102,11 +102,11 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
    *
    * @returns {Array} - Returns an array of Todo React Elements
    */
+   console.log(todos);
   const renderTodos = () => {
     if (!Array.isArray(todos)) {
       return null;
     }
-
     return todos.map(todo => {
       let filtered;
       switch (filterBy) {
@@ -117,11 +117,10 @@ const Todos = ({ filterBy, todos, updateTodos }) => {
           filtered = todo.status !== 'complete';
           break;
         // case 'archived':
-          // filtered = todo.status === 'archive' 
+          // filtered = todo.status === 'archive'
         default:
           filtered = false;
       }
-
       return (
         <Todo
           key={todo.id}

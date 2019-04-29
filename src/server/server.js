@@ -23,6 +23,7 @@ app.get('/', (req, res) => {
 
 app.get('/todos', (req, res) => {
   res.json(JSON.stringify(todos));
+
 });
 
 app.get('/todos/:id', (req, res) => {
@@ -30,6 +31,7 @@ app.get('/todos/:id', (req, res) => {
   const index = todos.findIndex((todo) => {
     return todo.id === id;
   });
+
 
   res.json(JSON.stringify(todos[index]));
 });
@@ -43,7 +45,7 @@ app.post('/todos', (req, res) => {
     return;
   }
 
-  const id = todos.length + 1;
+  const id = todos.length - 1;
   const newTodo = { id, text, status: 'active' };
 
   todos.push(newTodo);

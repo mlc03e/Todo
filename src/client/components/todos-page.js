@@ -54,6 +54,10 @@ class TodosPage extends React.Component {
    */
   componentDidMount() {
     api('GET', null, this.updateTodos);
+
+    fetch('http://localhost:3000/todos')
+    .then(response => response.json())
+    .then(todos => this.setState({todos: JSON.parse(todos)}))
   }
 
   /**
@@ -106,7 +110,7 @@ class TodosPage extends React.Component {
     return (
       <div className={this.baseCls}>
         <Navbar filterBy={this.state.filterBy} onClickFilter={this.setFilterBy} />
-        <SummaryBar />
+        <SummaryBar todos={this.state.todos}/>
         <TodoForm onSubmit={this.addTodo} />
 
         <Todos
