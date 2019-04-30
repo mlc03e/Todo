@@ -52,13 +52,20 @@ app.post('/todos', (req, res) => {
 
   res.status(201).json(todos);
 });
-
+// seems like this is returning HTML not json and causing a 500 error
 app.delete('/todos/:id', (req, res) => {
-  res.status(500).send({ message: 'not implemented' });
+  Todo.findByIdAndRemove({_id: req.params.id}, res) =>{
+        if(err) res.json(err);
+        else res.json('Todo successfully removed');
+  });
 });
 
 app.put('/todos/:id', (req, res) => {
-  res.status(500).send({ message: 'not implemented' });
+  // res.status(500).send({ message: 'not implemented' });
+  const id = req.params.id;
+  const updateTodo= todos.find(todo=> todo.id === id)
+  const archivedTodo = { id, updateTodo, status: 'active' }
+  res.send('PUT' status: 'archived')
 });
 
 // Node server.

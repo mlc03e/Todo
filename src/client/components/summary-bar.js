@@ -30,6 +30,7 @@ class SummaryBar extends Component {
           filterBy={this.props.filterBy}
           todos={this.props.todos}
           updateTodos={this.props.updateTodos}
+          
         />
       </div>
     );

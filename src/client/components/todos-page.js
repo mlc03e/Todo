@@ -110,10 +110,11 @@ class TodosPage extends React.Component {
     return (
       <div className={this.baseCls}>
         <Navbar filterBy={this.state.filterBy} onClickFilter={this.setFilterBy} />
-        <SummaryBar 
+        <SummaryBar
           filterBy={this.state.filterBy}
           todos={this.state.todos}
-          updateTodos={this.updateTodos}/>
+          updateTodos={this.updateTodos}
+          />
         <TodoForm onSubmit={this.addTodo} />
 
 

@@ -81,7 +81,10 @@ const Todos = ({ filterBy, todos, updateTodos }) =>  {
    */
   const onClickDelete = todo => {
     api('DELETE', todo, deleteTodo);
-  };
+    return fetch(`/todos/${todo.id}`, {method: 'DELETE'})
+    .then(res => res.json())
+    .then(r => console.log(r))
+  }
 
   /**
    * Click handler for clicking on the todo
@@ -111,13 +114,13 @@ const Todos = ({ filterBy, todos, updateTodos }) =>  {
       let filtered;
       switch (filterBy) {
         case 'active':
-          filtered = todo.status === 'complete';
+          filtered = todo.status === 'active';
           break;
         case 'completed':
-          filtered = todo.status !== 'complete';
+          filtered = todo.status === 'complete';
           break;
-        // case 'archived':
-          // filtered = todo.status === 'archive'
+        case 'archived':
+          filtered = todo.status === 'archive'
         default:
           filtered = false;
       }
