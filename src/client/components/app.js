@@ -31,9 +31,9 @@ const App = ({ children }) => {
       <div className={baseCls}>
         <Header />
 
-        <Route path="/">
-          <TodosPage />
-        </Route>
+        <Route path="/" component={TodosPage} />
+
+
       </div>
     </BrowserRouter>
   );
