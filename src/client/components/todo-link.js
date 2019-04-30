@@ -21,18 +21,21 @@ const defaultProps = {
   text: '',
 };
 
+
 /**
  * Link component
  * @returns {ReactElement}
  */
 const TodoLink = ({ text, onClick }) => {
+  console.log({text});
   /**
    * Base CSS class
    */
   const baseCls = 'todo-link';
 
   return (
-    <div className={baseCls} onClick={onClick}>
+
+    <div className='baseCls' onClick={onClick}>
       {text}
     </div>
   );
