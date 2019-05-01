@@ -23,7 +23,7 @@ class SummaryBar extends Component {
     const status= this.props.todos.map(todo => todo.status= 'complete')
     this.setState({completeAll: true})
   }
-
+  
   render() {
     // console.log(this.props.todos.length);
     return (
@@ -34,6 +34,7 @@ class SummaryBar extends Component {
           filterBy={this.props.filterBy}
           todos={this.props.todos}
           updateTodos={this.props.updateTodos}
+
         />
       </div>
     );
