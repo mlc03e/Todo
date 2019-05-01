@@ -13,8 +13,8 @@ const Header = () => {
 
   return (
     <div className={baseCls}>
-      <Link to="/">MyTodos</Link>
-      
+      <Link to="/" style={{fontSize: "50px", spacing: '30px', color: "white", textDecoration: 'none' }}>MyTodos</Link>
+
     </div>
   )
 };

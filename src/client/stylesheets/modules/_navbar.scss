@@ -1,10 +1,22 @@
 // Navbar module
 .navbar {
+  background-color: #e7e7e7;
+  width: 100%;
+
   &__item {
     text-decoration: none;
+    color: #c0c0c0;
+    padding: 15px;
   }
 
   &__item--active {
     font-weight: 700;
+    color:#858585;
   }
 }
+a {
+    display: inline-block;
+    padding: 6px 12px;
+    text-decoration: none;
+
+  }
