@@ -54,11 +54,32 @@ app.post('/todos', (req, res) => {
 });
 
 app.delete('/todos/:id', (req, res) => {
-  res.status(500).send({ message: 'not implemented' });
+  // res.status(500).send({ message: 'not implemented' });
+  const requestId= request.params.id;
+  let todo= todos.filter(todo=>{
+    todo.id === requestId
+  })[0];
+  const index=  todos.indexOf(todo);
+
+  todos.splice(index, 1);
+
+  res.json({message: 'todo has been delted'})
 });
 
 app.put('/todos/:id', (req, res) => {
-  res.status(500).send({ message: 'not implemented' });
+  // res.status(500).send({ message: 'not implemented' });
+  //had problems with json, seems to be reading html
+  const requestId= request.params.id;
+  let todo= todos.filter(todo=>{
+    todo.id === requestId
+  })[0];
+  const index=  todos.indexOf(todo);
+  const keys= Object.keys(request.body);
+  keys.forEach(key=>{
+    todo[key] = request.body[key];
+  });
+  todos[index] = todo
+  res.json(todos[index]);
 });
 
 // Node server.

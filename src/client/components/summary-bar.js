@@ -23,12 +23,16 @@ class SummaryBar extends Component {
     const status= this.props.todos.map(todo => todo.status= 'complete')
     this.setState({completeAll: true})
   }
-  
+  todosRemaining= ()=> {
+    const todosArray= Object.keys(this.props.todos).map(i=>this.props.todos[i])
+    return todosArray.filter(todo => todo.status === 'active').length
+
+  }
   render() {
-    // console.log(this.props.todos.length);
+    // console.log(Object.keys(this.props.todos).map(i=>this.props.todos[i]).filter(t=> t.status === 'active'));
     return (
       <div className={this.baseCls}>
-        <h3> {this.props.todos.length} tasks remaining </h3>
+        <h3> {this.todosRemaining()} tasks remaining </h3>
         <h4 onClick={this.completeAll}> Complete All </h4>
         <Todos
           filterBy={this.props.filterBy}
