@@ -10,6 +10,11 @@ const noop = () => {};
 // // @returns {ReactElement}
 
 class SummaryBar extends Component {
+
+
+
+ static baseCls = 'summarybar'
+
   state= {
     completeAll: false
   }
@@ -22,8 +27,7 @@ class SummaryBar extends Component {
   render() {
     // console.log(this.props.todos.length);
     return (
-      <div className='summaryBar'>
-        <h1>Summary Bar</h1>
+      <div className={this.baseCls}>
         <h3> {this.props.todos.length} tasks remaining </h3>
         <h4 onClick={this.completeAll}> Complete All </h4>
         <Todos
