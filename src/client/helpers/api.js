@@ -26,9 +26,10 @@ export function api(method, data, cb) {
  * @returns {promise} - Promise from the fetch request to the backend
  */
 export function getApiPromise(method, data) {
+  // console.log(data);
   let url = 'http://localhost:3000/todos';
   if (['DELETE', 'PUT'].indexOf(method) !== -1) {
-    url += `/${data.id}`;
+    url += `/${data}`;
   }
 
   const options = {
@@ -47,7 +48,9 @@ export function getApiPromise(method, data) {
 
   return fetch(url, options)
   .then(response => {
+
     if (response.status >= 400) {
+
       return response.json().then(err => Promise.reject(err.message));
     }
 

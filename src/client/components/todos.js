@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { api } from '../helpers/api';
+import { api, deleteApiPromise  } from '../helpers/api';
 import Todo from './todo';
 
 const noop = () => {};
@@ -30,7 +30,7 @@ const defaultProps = {
  * Todos component
  * @returns {ReactElement}
  */
-const Todos = ({ filterBy, todos, updateTodos }) =>  {
+const Todos = ({ filterBy, todos, updateTodos, deleteTodo }) =>  {
   /**
    * Base CSS class
    */
@@ -41,18 +41,20 @@ const Todos = ({ filterBy, todos, updateTodos }) =>  {
    *
    * @param  {object} json - Resulting JSON from fetch
    */
-  const deleteTodo = json => {
-    const index = todos.findIndex(todo => {
-      return todo.id === json.id;
-    });
-
-    updateTodos(
-      [
-        ...todos.slice(0, index),
-        ...todos.slice(index + 1),
-      ]
-    );
-  }
+  // const deleteTodo = json => {
+  //   // console.log(json);
+  //   const index = todos.findIndex(todo => {
+  //
+  //     return todo.id === json.id;
+  //   });
+  //
+  //   updateTodos(
+  //     [
+  //       ...todos.slice(0, index),
+  //       ...todos.slice(index + 1),
+  //     ]
+  //   );
+  // }
 
   /**
    * Callback function to replace todo with results of fetching the todo PUT endpoint
@@ -80,7 +82,8 @@ const Todos = ({ filterBy, todos, updateTodos }) =>  {
    * @param {object} todo - Todo object
    */
   const onClickDelete = todo => {
-    api('DELETE', todo, deleteTodo);
+
+
   };
 
   /**
@@ -116,8 +119,8 @@ const Todos = ({ filterBy, todos, updateTodos }) =>  {
         case 'completed':
           filtered = todo.status !== 'complete';
           break;
-        // case 'archived':
-          // filtered = todo.status === 'archive'
+        case 'archived':
+          filtered = todo.status === 'archive'
         default:
           filtered = false;
       }
@@ -129,6 +132,8 @@ const Todos = ({ filterBy, todos, updateTodos }) =>  {
           onClickTodo={onClickTodo.bind(this, todo)}
           status={todo.status}
           text={todo.text}
+          id={todo.id}
+          deleteTodo={deleteTodo}
         />
       );
     })

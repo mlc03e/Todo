@@ -58,6 +58,7 @@ class TodosPage extends React.Component {
     fetch('http://localhost:3000/todos')
     .then(response => response.json())
     .then(todos => this.setState({todos: JSON.parse(todos)}))
+    .then(()=>console.log(this.state.todos))
   }
 
   /**
@@ -83,7 +84,16 @@ class TodosPage extends React.Component {
       todos: [...json],
     });
   }
-
+  deleteTodo=(todo) => {
+    // console.log(todo);
+    api('DELETE', todo, this.destroyTodo);
+  }
+  destroyTodo=(json)=> {
+    console.log(json);
+    this.setState({
+      todos: json.data
+    })
+  }
   /**
    * Set filterBy state
    *
@@ -110,10 +120,11 @@ class TodosPage extends React.Component {
     return (
       <div className={this.baseCls}>
         <Navbar filterBy={this.state.filterBy} onClickFilter={this.setFilterBy} />
-        <SummaryBar 
+        <SummaryBar
           filterBy={this.state.filterBy}
           todos={this.state.todos}
-          updateTodos={this.updateTodos}/>
+          updateTodos={this.updateTodos}
+          deleteTodo={this.deleteTodo}/>
         <TodoForm onSubmit={this.addTodo} />
 
 

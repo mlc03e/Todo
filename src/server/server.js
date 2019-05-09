@@ -10,9 +10,11 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const todos = [
-  { id: 1, text: 'Hello, world!', status: 'active' },
-  { id: 2, text: 'Pick up groceries', status: 'complete' }
+let todos = [
+  { id: "1", text: 'Hello, world!', status: 'active' },
+  { id: "2", text: 'Pick up groceries', status: 'complete' },
+  { id: "3", text: 'Walk Dog', status: 'active'},
+  { id: "4", text: 'Eat lunch', status: 'active'}
 ];
 
 app.get('/', (req, res) => {
@@ -29,7 +31,7 @@ app.get('/todos', (req, res) => {
 app.get('/todos/:id', (req, res) => {
   const id = req.params.id;
   const index = todos.findIndex((todo) => {
-    return todo.id === id;
+    return todo.id === parseInt(id);
   });
 
 
@@ -45,7 +47,7 @@ app.post('/todos', (req, res) => {
     return;
   }
 
-  const id = todos.length - 1;
+  const id = `${todos.length + 1}`;
   const newTodo = { id, text, status: 'active' };
 
   todos.push(newTodo);
@@ -53,20 +55,27 @@ app.post('/todos', (req, res) => {
   res.status(201).json(todos);
 });
 
-app.delete('/todos/:id', (req, res) => {
+app.delete('/todos/:id', (request, res) => {
   // res.status(500).send({ message: 'not implemented' });
-  const requestId= request.params.id;
-  let todo= todos.filter(todo=>{
-    todo.id === requestId
-  })[0];
-  const index=  todos.indexOf(todo);
+  // console.log(parseInt(request.params.id));
+  // debugger
+  // console.log("request", request.params);
+  // console.log("res", res);
+  console.log("before change", todos);
+  const requestId=  request.params.id;
+   todos=  todos.filter(todo=>{
 
-  todos.splice(index, 1);
-
-  res.json({message: 'todo has been delted'})
+    return todo.id !== requestId
+  });
+  console.log("after change", todos);
+  // const index=  todos.indexOf(todo);
+  // console.log(index);
+  // todos.splice(index, 1);
+  // console.log(todos);
+  res.json({message: 'todo has been delted', data: todos})
 });
 
-app.put('/todos/:id', (req, res) => {
+app.put('/todos/:id', (request, res) => {
   // res.status(500).send({ message: 'not implemented' });
   //had problems with json, seems to be reading html
   const requestId= request.params.id;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Todos from './todos';
+import { api, getApiPromise } from '../helpers/api';
 // import PropTypes from 'prop-types';
 // import React from 'react';
 //
@@ -24,12 +25,14 @@ class SummaryBar extends Component {
     this.setState({completeAll: true})
   }
   todosRemaining= ()=> {
+
     const todosArray= Object.keys(this.props.todos).map(i=>this.props.todos[i])
+
     return todosArray.filter(todo => todo.status === 'active').length
 
   }
   render() {
-    // console.log(Object.keys(this.props.todos).map(i=>this.props.todos[i]).filter(t=> t.status === 'active'));
+
     return (
       <div className={this.baseCls}>
         <h3> {this.todosRemaining()} tasks remaining </h3>
@@ -38,7 +41,7 @@ class SummaryBar extends Component {
           filterBy={this.props.filterBy}
           todos={this.props.todos}
           updateTodos={this.props.updateTodos}
-
+          deleteTodo={this.props.deleteTodo}
         />
       </div>
     );
