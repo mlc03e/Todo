@@ -42,6 +42,7 @@ class SummaryBar extends Component {
           todos={this.props.todos}
           updateTodos={this.props.updateTodos}
           deleteTodo={this.props.deleteTodo}
+          
         />
       </div>
     );

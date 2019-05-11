@@ -94,6 +94,7 @@ class TodosPage extends React.Component {
       todos: json.data
     })
   }
+
   /**
    * Set filterBy state
    *
@@ -109,6 +110,7 @@ class TodosPage extends React.Component {
    * @param  {Array} todos - Array of todo objects
    */
   updateTodos(todos) {
+    // console.log(todos);
     this.setState({ todos });
   }
 
@@ -116,6 +118,7 @@ class TodosPage extends React.Component {
    * Render
    * @returns {ReactElement}
    */
+
   render() {
     return (
       <div className={this.baseCls}>
@@ -124,7 +127,9 @@ class TodosPage extends React.Component {
           filterBy={this.state.filterBy}
           todos={this.state.todos}
           updateTodos={this.updateTodos}
-          deleteTodo={this.deleteTodo}/>
+          deleteTodo={this.deleteTodo}
+          />
+
         <TodoForm onSubmit={this.addTodo} />
 
 

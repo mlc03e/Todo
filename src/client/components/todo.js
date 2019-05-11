@@ -43,11 +43,11 @@ const Todo = ({ filtered, onClickDelete, onClickTodo, status, text, deleteTodo, 
   const todoCls = baseCls
     + (status === 'complete' ? ' todo--status-complete' : '')
     + (filtered ? ' todo--filtered' : '');
-
+    // console.log(status);
   return (
     <li className={todoCls}>
 
-      <TodoLink text={text} onClick={onClickTodo} />
+      <TodoLink text={text} onClick={()=>onClickTodo(id)} />
       {status === 'complete' && <Button text= "Archive" />}
       <Button text="Delete" onClick={()=>deleteTodo(id)} />
     </li>

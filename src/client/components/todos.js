@@ -35,7 +35,7 @@ const Todos = ({ filterBy, todos, updateTodos, deleteTodo }) =>  {
    * Base CSS class
    */
   const baseCls = 'todos';
-
+console.log(todos);
   /**
    * Callback function to delete todo from todos collection
    *
@@ -62,7 +62,9 @@ const Todos = ({ filterBy, todos, updateTodos, deleteTodo }) =>  {
    * @param  {object} json - Resulting JSON from fetch
    */
   const putTodo = json => {
+
     const index = todos.findIndex(todo => {
+      
       return todo.id === json.id;
     });
 
@@ -93,11 +95,18 @@ const Todos = ({ filterBy, todos, updateTodos, deleteTodo }) =>  {
    * @param {object} todo - Todo object
    */
   const onClickTodo = todo => {
-    const newTodo = Object.assign({}, todo);
-    newTodo.status = todo.status === 'complete' ? 'active' : 'complete';
-    newTodo.archive = false;
+    const filter= todos.filter(t=> t.id === todo)
+    if (filter[0].status === 'active'){
+       filter[0].status = 'complete'
+    }
 
-    api('PUT', newTodo, putTodo);
+    console.log(filter);
+    // const newTodo = Object.assign({}, todo);
+    // newTodo.status = todo.status === 'complete' ? 'active' : 'complete';
+    // newTodo.archive = false;
+    // console.log(todos.filter(t=> t.id === todo));
+    api('PUT', filter, putTodo);
+    ;
   }
 
   /**
@@ -129,11 +138,12 @@ const Todos = ({ filterBy, todos, updateTodos, deleteTodo }) =>  {
           key={todo.id}
           filtered={filtered}
           onClickDelete={onClickDelete.bind(this, todo)}
-          onClickTodo={onClickTodo.bind(this, todo)}
+          onClickTodo={onClickTodo}
           status={todo.status}
           text={todo.text}
           id={todo.id}
           deleteTodo={deleteTodo}
+
         />
       );
     })

@@ -56,39 +56,22 @@ app.post('/todos', (req, res) => {
 });
 
 app.delete('/todos/:id', (request, res) => {
-  // res.status(500).send({ message: 'not implemented' });
-  // console.log(parseInt(request.params.id));
-  // debugger
-  // console.log("request", request.params);
-  // console.log("res", res);
-  console.log("before change", todos);
+  // console.log("before change", todos);
   const requestId=  request.params.id;
-   todos=  todos.filter(todo=>{
-
+  todos=  todos.filter(todo=>{
     return todo.id !== requestId
   });
-  console.log("after change", todos);
-  // const index=  todos.indexOf(todo);
-  // console.log(index);
-  // todos.splice(index, 1);
-  // console.log(todos);
+  // console.log("after change", todos);
   res.json({message: 'todo has been delted', data: todos})
 });
 
 app.put('/todos/:id', (request, res) => {
   // res.status(500).send({ message: 'not implemented' });
-  //had problems with json, seems to be reading html
-  const requestId= request.params.id;
-  let todo= todos.filter(todo=>{
-    todo.id === requestId
-  })[0];
-  const index=  todos.indexOf(todo);
-  const keys= Object.keys(request.body);
-  keys.forEach(key=>{
-    todo[key] = request.body[key];
-  });
-  todos[index] = todo
-  res.json(todos[index]);
+  // const requestId= request.params.id;
+  // console.log(request.body.data[0].status);
+  const todoStatus=request.body.data[0].status
+    res.json({todoStatus: 'complete'})
+
 });
 
 // Node server.
