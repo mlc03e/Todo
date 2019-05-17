@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/todos', (req, res) => {
-  res.json(JSON.stringify(todos));
+  res.json(todos);
 
 });
 
@@ -35,7 +35,7 @@ app.get('/todos/:id', (req, res) => {
   });
 
 
-  res.json(JSON.stringify(todos[index]));
+  res.json(todos[index]);
 });
 
 app.post('/todos', (req, res) => {
@@ -46,8 +46,11 @@ app.post('/todos', (req, res) => {
 
     return;
   }
-
-  const id = `${todos.length + 1}`;
+  const index= todos.length - 1
+  const indexId= parseInt(todos[index].id)
+  const id = `${ indexId + 1}`;
+  console.log(index);
+  console.log(todos[index].id);
   const newTodo = { id, text, status: 'active' };
 
   todos.push(newTodo);
@@ -68,10 +71,11 @@ app.delete('/todos/:id', (request, res) => {
 app.put('/todos/:id', (request, res) => {
   // res.status(500).send({ message: 'not implemented' });
   // const requestId= request.params.id;
-  // console.log(request.body.data.status);
+  // console.log(request.body.data[0].status);
   const archiveStatus= request.body.data.status
+  // console.log(archiveStatus);
   const todoStatus=request.body.data[0].status
-    if (todoStatus === 'active') {
+    if (todoStatus === 'complete') {
       return res.json({todoStatus: 'complete'})
     }
     if (archiveStatus === 'archive') {

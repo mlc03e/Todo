@@ -76,7 +76,16 @@ console.log(todos);
       ]
     );
   }
-
+  const putArchive = json => {
+    console.log(json);
+    updateTodos(
+      [
+        ...todos.slice(0, index),
+        json,
+        ...todos.slice(index + 1),
+      ]
+    );
+  }
   /**
    * Click handler for clicking on delete button
    * Deletes todo
@@ -95,6 +104,7 @@ console.log(todos);
    * @param {object} todo - Todo object
    */
   const onClickTodo = todo => {
+    console.log(todo);
     const filter= todos.filter(t=> t.id === todo)
     if (filter[0].status === 'active'){
        filter[0].status = 'complete'
@@ -111,7 +121,7 @@ console.log(todos);
   const onClickArchive = todo => {
     const updateStatus= todo.status = 'archive'
     // console.log(todo);
-    api('PUT', todo, putTodo)
+    api('PUT', todo, putArchive)
   }
   /**
    * Renders All Todos

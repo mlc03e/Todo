@@ -43,7 +43,7 @@ class SummaryBar extends React.Component {
   render() {
 
     return (
-      <div className={this.baseCls}>
+      <div className={SummaryBar.baseCls}>
         <h3> {this.todosRemaining()} tasks remaining </h3>
         <h4 onClick={this.completeAll}> Complete All </h4>
         <Todos
