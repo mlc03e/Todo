@@ -101,6 +101,7 @@ class TodosPage extends React.Component {
    * @param {string} filterBy - filterBy state
    */
   setFilterBy(filterBy) {
+    console.log(filterBy);
     this.setState({ filterBy });
   }
 

@@ -39,7 +39,7 @@ const Navbar = ({ filterBy, onClickFilter }) => {
   completedLinkCls += filterBy === 'completed' ? ` ${baseCls}__item--active` : '';
 
   let archivedLinkCls = `${baseCls}__item`;
-  completedLinkCls += filterBy === 'archived' ? ` ${baseCls}__item--active` : '';
+  archivedLinkCls += filterBy === 'archived' ? ` ${baseCls}__item--active` : '';
   return (
     <div className={baseCls}>
       <NavLink

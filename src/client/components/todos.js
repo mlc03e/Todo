@@ -64,7 +64,7 @@ console.log(todos);
   const putTodo = json => {
 
     const index = todos.findIndex(todo => {
-      
+
       return todo.id === json.id;
     });
 
@@ -108,7 +108,11 @@ console.log(todos);
     api('PUT', filter, putTodo);
     ;
   }
-
+  const onClickArchive = todo => {
+    const updateStatus= todo.status = 'archive'
+    // console.log(todo);
+    api('PUT', todo, putTodo)
+  }
   /**
    * Renders All Todos
    *
@@ -139,6 +143,7 @@ console.log(todos);
           filtered={filtered}
           onClickDelete={onClickDelete.bind(this, todo)}
           onClickTodo={onClickTodo}
+          onClickArchive={onClickArchive.bind(this, todo)}
           status={todo.status}
           text={todo.text}
           id={todo.id}

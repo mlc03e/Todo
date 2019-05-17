@@ -68,10 +68,15 @@ app.delete('/todos/:id', (request, res) => {
 app.put('/todos/:id', (request, res) => {
   // res.status(500).send({ message: 'not implemented' });
   // const requestId= request.params.id;
-  // console.log(request.body.data[0].status);
+  // console.log(request.body.data.status);
+  const archiveStatus= request.body.data.status
   const todoStatus=request.body.data[0].status
-    res.json({todoStatus: 'complete'})
-
+    if (todoStatus === 'active') {
+      return res.json({todoStatus: 'complete'})
+    }
+    if (archiveStatus === 'archive') {
+      return res.json({todoStatus: 'archive'})
+    }
 });
 
 // Node server.

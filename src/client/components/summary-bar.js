@@ -1,20 +1,29 @@
 import React, { Component } from 'react';
 import Todos from './todos';
 import { api, getApiPromise } from '../helpers/api';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+
 // import React from 'react';
 //
-const noop = () => {};
+/**
+ * TodosPage component
+ * @class
+ */
+// const noop = () => {};
 // //
 // // @private
 // //
 // // @returns {ReactElement}
 
-class SummaryBar extends Component {
+class SummaryBar extends React.Component {
+
+  /**
+   * Base CSS class
+   * @static
+   */
+  static baseCls = 'summary-bar'
 
 
-
- static baseCls = 'summarybar'
 
   state= {
     completeAll: false
@@ -42,7 +51,7 @@ class SummaryBar extends Component {
           todos={this.props.todos}
           updateTodos={this.props.updateTodos}
           deleteTodo={this.props.deleteTodo}
-          
+
         />
       </div>
     );
